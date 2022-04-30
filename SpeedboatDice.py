@@ -20,12 +20,12 @@ class SpeedboatDice:
         self.screen = pygame.display.set_mode(self.window_size)
 
         # 加载图像,并显示
-        self.board = pygame.image.load(os.path.join('Pic', 'board2.png'))
+        self.board = pygame.image.load(os.path.join('Media', 'Pic', 'board2.png'))
         self.screen.blit(self.board, (0, 0))
 
         # 加载 BGM
         pygame.mixer.init()
-        pygame.mixer.music.load(os.path.join('Music', 'BGM.mp3'))
+        pygame.mixer.music.load(os.path.join('Media', 'Music', 'BGM.mp3'))
         pygame.mixer.music.play(100000)
 
     @staticmethod

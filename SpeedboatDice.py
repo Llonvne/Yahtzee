@@ -2,6 +2,8 @@ import os.path
 
 import pygame
 
+from text import displaytext
+
 
 class SpeedboatDice:
     def __init__(self):
@@ -23,6 +25,8 @@ class SpeedboatDice:
         pygame.mixer.init()
         pygame.mixer.music.load(os.path.join('Music', 'BGM.mp3'))
         pygame.mixer.music.play(100000)
+
+        displaytext(self.screen,(0,0),10)
 
     @staticmethod
     def run():

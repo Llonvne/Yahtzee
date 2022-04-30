@@ -24,7 +24,8 @@ class SpeedboatDice:
         pygame.mixer.music.load(os.path.join('Music', 'BGM.mp3'))
         pygame.mixer.music.play(100000)
 
-    def run(self):
+    @staticmethod
+    def run():
         running = True
         while running:
             for event in pygame.event.get():

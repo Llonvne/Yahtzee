@@ -7,7 +7,7 @@ class SpeedboatDice:
     def __init__(self):
 
         # 设置窗口大小，分辨率
-        self.window_size: tuple = (1280, 720)
+        self.window_size: tuple = (1280,720)
         self.caption = "快艇骰子"
 
         # 初始化 pygame 模块
@@ -16,7 +16,7 @@ class SpeedboatDice:
         self.screen = pygame.display.set_mode(self.window_size)
 
         # 加载图像,并显示
-        self.board = pygame.image.load(os.path.join('Pic', 'board1.png'))
+        self.board = pygame.image.load(os.path.join('Pic', 'board2.png'))
         self.screen.blit(self.board, (0, 0))
 
         # 加载 BGM

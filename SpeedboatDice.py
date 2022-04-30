@@ -2,14 +2,14 @@ import os.path
 
 import pygame
 
-from text import displaytext
+from GameItem.DiceGroup import DiceGroup
 
 
 class SpeedboatDice:
     def __init__(self):
 
         # 设置窗口大小，分辨率
-        self.window_size: tuple = (1280,720)
+        self.window_size: tuple = (1280, 720)
         self.caption = "快艇骰子"
 
         # 初始化 pygame 模块
@@ -26,7 +26,10 @@ class SpeedboatDice:
         pygame.mixer.music.load(os.path.join('Music', 'BGM.mp3'))
         pygame.mixer.music.play(100000)
 
-        displaytext(self.screen,(0,0),10)
+        # 记载骰子组
+        a = DiceGroup()
+        a.dice[0].value = 1
+        print(a.countK(1))
 
     @staticmethod
     def run():

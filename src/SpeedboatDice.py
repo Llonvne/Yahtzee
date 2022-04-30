@@ -2,7 +2,9 @@ import os.path
 from enum import Enum
 
 import pygame
-
+from moviepy.editor import *
+from src.GameItem.DiceGroup import DiceGroup
+from src.tools import disBG
 
 class SpeedboatDice:
     def __init__(self):
@@ -14,26 +16,37 @@ class SpeedboatDice:
         self.window_size: tuple = (1280, 720)
         self.caption = "快艇骰子"
 
+        # 设置 LOGO
+        logo = pygame.image.load(os.path.join('Media', 'Pic', 'LOGO.jpeg'))
+        pygame.display.set_icon(logo)
+
         # 初始化 pygame 模块
         pygame.init()
         pygame.display.set_caption(self.caption)
         self.screen = pygame.display.set_mode(self.window_size)
 
-        # 加载图像,并显示
-        self.board = pygame.image.load(os.path.join('Media', 'Pic', 'board2.png'))
-        self.screen.blit(self.board, (0, 0))
+        # 显示背景
+        disBG.disBg(self.screen)
 
-        # 加载 BGM
-        pygame.mixer.init()
-        pygame.mixer.music.load(os.path.join('Media', 'Music', 'BGM.mp3'))
-        pygame.mixer.music.play(100000)
+        # 开头视频
+        start0Video = VideoFileClip("Media/Video/Start0720.mp4").subclip(0, 3.5)
+        startVideo = VideoFileClip("Media/Video/Start720.mp4").subclip(0, 2.4)
+        start0Video.preview()
+        startVideo.preview()
+        startVideo.close()
+        start0Video.close()
 
-    @staticmethod
-    def run():
+    def run(self):
         """
         启动游戏
         :return:
         """
+
+        # 加载 BGM
+        pygame.mixer.init()
+        pygame.mixer.music.load(os.path.join('Media', 'Music', 'BGM.mp3'))
+        pygame.mixer.music.set_volume(0.5)
+        pygame.mixer.music.play(100000)
 
         class GameStage(Enum):
             """
@@ -49,6 +62,8 @@ class SpeedboatDice:
         # 初始化游戏阶段
         stage = GameStage.START
 
+        a = DiceGroup()
+
         # 游戏循环
         # 开始游戏阶段
         running = True
@@ -63,3 +78,4 @@ class SpeedboatDice:
                 elif stage == GameStage.ROLL:
                     pass
             pygame.display.update()
+            disBG.disBg(self.screen)

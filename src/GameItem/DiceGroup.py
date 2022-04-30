@@ -1,12 +1,14 @@
 import pygame
 
 from src.GameItem.Dice import Dice
-from src.GameItem.GameItem import GameItem
 
 
-class DiceGroup(GameItem):
-    def getPygameSurface(self) -> pygame.Surface:
-        pass
+class DiceGroup:
+    def displayDices(self, screen: pygame.Surface):
+        diff = 550
+        for d in self.dice:
+            screen.blit(d.getPygameSurface(), (diff, 60))
+            diff += 100
 
     def __init__(self):
         self.dice: list = [Dice() for i in range(5)]

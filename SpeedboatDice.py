@@ -16,7 +16,7 @@ class SpeedboatDice:
         self.screen = pygame.display.set_mode(self.window_size)
 
         # 加载图像,并显示
-        self.board = pygame.image.load(os.path.join('Pic', 'board.png'))
+        self.board = pygame.image.load(os.path.join('Pic', 'board1.png'))
         self.screen.blit(self.board, (0, 0))
 
         # 加载 BGM

@@ -1,7 +1,7 @@
 import pygame
 
-from GameItem import ScoreBoard
-from GameItem.DiceGroup import DiceGroup
+from src.GameItem import ScoreBoard
+from src.GameItem.DiceGroup import DiceGroup
 from text import displaytext
 
 

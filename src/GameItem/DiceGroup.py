@@ -1,7 +1,7 @@
 import pygame
 
-from GameItem.Dice import Dice
-from GameItem.GameItem import GameItem
+from src.GameItem.Dice import Dice
+from src.GameItem.GameItem import GameItem
 
 
 class DiceGroup(GameItem):

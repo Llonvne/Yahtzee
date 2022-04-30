@@ -1,7 +1,6 @@
 import pygame
 
-from GameItem.DiceGroup import DiceGroup
-from GameItem.GameItem import GameItem
+from src.GameItem.GameItem import GameItem
 
 
 class Scoreboard(GameItem):

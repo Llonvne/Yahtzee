@@ -2,7 +2,7 @@ import os
 
 import pygame
 
-from GameItem.GameItem import GameItem
+from src.GameItem.GameItem import GameItem
 
 import random
 

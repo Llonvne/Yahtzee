@@ -22,6 +22,8 @@ class Dice(GameItem):
         """
         # 初始化骰子值为 0
         self.value = 0
+        # 是否保留,默认不保留
+        self.remaining = False
 
     def getPygameSurface(self) -> pygame.Surface:
         return DicePics[self.value]

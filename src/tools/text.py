@@ -39,6 +39,7 @@ def displaytop(screen: pygame.surface, point, vlaue,color):
 #用于输出小节部分的数字
 def displaysubtotaln(screen: pygame.surface, point, vlaue,color):
     #需要用到的颜色是 (228,226,227)
+    color=(228,226,227)
     star_x=211
     star_y=350
     lenth_x = 81

@@ -5,28 +5,28 @@ from events import *
 from round import Round
 
 
+def BlockUserInput():
+    """
+    该函数将会立刻阻断所有用户事件
+    :return:
+    """
+    pygame.event.set_blocked((RemainK, RollNow, ChooseK))
+
+
+def AllowUserInput():
+    """
+    该函数将允许所有用户事件通过
+    :return:
+    """
+    pygame.event.set_blocked(None)
+
+
 def remainingK(k: int) -> None:
     """
     如果用户选择保留/不保留 第 K 个骰子，请立刻触发该事件
     :return:
     """
     post(Event(RemainK, {"用户事件": "保留第K个骰子", "remain": k}))
-
-
-def toChooseScore() -> None:
-    """
-    如果用户选择去选择填入分数界面，请立刻触发该函数
-    :return:
-    """
-    post(Event(ChooseScore, {"用户事件": "选择分数"}))
-
-
-def toRoll() -> None:
-    """
-    如果用户选择去投骰子界面，请立刻触发该函数
-    :return:
-    """
-    post(Event(Roll, {"用户事件": "投掷骰子界面"}))
 
 
 def roll() -> None:
@@ -48,7 +48,7 @@ def chooseKScore(k: int) -> None:
     post(Event(ChooseK, {"用户事件": "记录第K个分数", "no": k}))
 
 
-def processUserInput(event: Event, round:Round):
+def processUserInput(event: Event, round: Round):
     """
     该函数用于不断接受各种事件，
     其中 event 为输入事件

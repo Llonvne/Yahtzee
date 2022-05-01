@@ -9,6 +9,8 @@ class Round:
     def __init__(self, scoreBoard: list[ScoreBoard]):
         # 初始化 DiceGroup
         self.diceGroup = DiceGroup()
+        self.diceGroup.rollNotRemaining()
+        pygame.event.post(pygame.event.Event(events.RollNow, {"RollNow": "1"}))
         # 一共有三次机会
         self.chance1 = 3
         self.chance2 = 3
@@ -56,14 +58,24 @@ class Round:
     def roll(self):
         if self.userNo == 1:
             if self.chance1 > 0:
-                self.diceGroup.rollNotRemaining()
+                # 引发 RollEvent 事件
+                pygame.event.post(pygame.event.Event(events.RollEvent, {"RollEvent": 1}))
+                pygame.event.post(pygame.event.Event(events.RollEvent,{"RollEvent": 1}))
+                pygame.event.post(pygame.event.Event(events.RollEvent,{"RollEvent": 1}))
+                pygame.event.post(pygame.event.Event(events.RollEvent,{"RollEvent": 1}))
                 # 引发 RollEnd 事件
-            pygame.event.post(pygame.event.Event(events.RollEnd))
+                pygame.event.post(pygame.event.Event(events.RollEnd))
+                self.chance1 -= 1
         else:
             if self.chance2 > 0:
-                self.diceGroup.rollNotRemaining()
+                # 引发 RollEvent 事件
+                pygame.event.post(pygame.event.Event(events.RollEvent,{"RollEvent": 1}))
+                pygame.event.post(pygame.event.Event(events.RollEvent,{"RollEvent": 1}))
+                pygame.event.post(pygame.event.Event(events.RollEvent,{"RollEvent": 1}))
+                pygame.event.post(pygame.event.Event(events.RollEvent,{"RollEvent": 1}))
                 # 引发 RollEnd 事件
-            pygame.event.post(pygame.event.Event(events.RollEnd))
+                pygame.event.post(pygame.event.Event(events.RollEnd))
+                self.chance2 -= 1
         pass
 
     def choose(self, k: int):

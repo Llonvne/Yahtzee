@@ -19,3 +19,5 @@ RoundEnd = pygame.USEREVENT + 8
 RoundStart = pygame.USEREVENT + 11
 
 ChooseKEnd = pygame.USEREVENT + 13
+
+RollEvent = pygame.USEREVENT + 14

@@ -6,12 +6,16 @@
 import pygame.font
 
 
-def displaytext(screen: pygame.surface, point, vlaue):
-    star_x = 220
-    star_y = 295
-    lenth_x = 93
-    lenth_y = 52
-    Font = pygame.font.Font(pygame.font.get_default_font(), 30)
-    Font_surface = Font.render(str(vlaue), True, (0, 0, 0), None)
-    # screen.blit(Font_surface,(star_x+lenth_x*point[0],star_y+lenth_y*point[1]))
-    screen.blit(Font_surface, (star_x, star_y))
+def displaytexttop(screen: pygame.surface, point, vlaue,colorbool):
+    if colorbool:
+        color=(156,158,161)
+    else:
+        color=(0,0,0,)
+    star_x = 197
+    star_y = 143
+    lenth_x = 81
+    lenth_y = 35
+    Font = pygame.font.Font(pygame.font.get_default_font(), 21)
+    Font_surface = Font.render(str(vlaue), True,color, None)
+    screen.blit(Font_surface,(star_x+lenth_x*point[0],star_y+lenth_y*point[1]))
+

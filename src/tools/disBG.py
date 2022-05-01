@@ -10,4 +10,6 @@ def disBg(screen: pygame.Surface) -> None:
     :return: None
     """
     board = pygame.image.load(os.path.join('Media', 'Pic', 'board2.png'))
+    roll = pygame.image.load(os.path.join('Media', 'Pic', 'ROLL0.png'))
     screen.blit(board, (0, 0))
+    screen.blit(roll, (1075, 615))

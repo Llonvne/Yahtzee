@@ -3,7 +3,9 @@ import os.path
 import pygame.event
 from moviepy.editor import *
 
+from src.GameItem.ScoreBoard import Scoreboard
 from src.tools import disBG
+from src.tools.disChoice import disChoice
 from src.userInput import *
 
 
@@ -53,7 +55,11 @@ class SpeedboatDice:
         启动游戏
         :return:
         """
-        r = Round()
+        # 初始化 ScoreBoard
+        scoreBoards = [Scoreboard() for i in range(2)]
+
+        # 初始化回合
+        r = Round(scoreBoards)
         roundCount = 0
 
         # 游戏循环
@@ -61,6 +67,7 @@ class SpeedboatDice:
         running = True
         while running:
             for event in pygame.event.get():
+                print(event)
                 # 如果按下了退出按钮
                 if event.type == pygame.QUIT:
                     running = False
@@ -68,8 +75,6 @@ class SpeedboatDice:
                 elif event.type == GAME_START:
                     # 清空队列中保留的用户事件
                     ClearAllUserEventsInQueue()
-                    # 立刻开始接受用户输入
-                    AllowUserInput()
                     # 立刻推入 RoundStart 事件
                     pygame.event.post(pygame.event.Event(RoundStart))
                 elif event.type == GAME_END:
@@ -98,6 +103,7 @@ class SpeedboatDice:
                     r.roll()
                 # 接收到Roll结束事件
                 elif event.type == RollEnd:
+                    disChoice(r.diceGroup, scoreBoards[r.userNo], r.userNo, self.screen)
                     # 清空队列中保留的用户事件
                     ClearAllUserEventsInQueue()
                     # 开始接受用户输入
@@ -124,7 +130,7 @@ class SpeedboatDice:
                 elif event.type == RoundStart:
                     AllowUserInput()
                     roundCount += 1
-                    r = Round()
+                    r = Round(scoreBoards)
                 else:
                     processUserInput(event, r)
             pygame.display.update()

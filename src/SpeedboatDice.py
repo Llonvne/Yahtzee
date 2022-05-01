@@ -10,34 +10,9 @@ from src.userInput import *
 
 
 class SpeedboatDice:
-    def __init__(self):
-        """
-        初始化 pygame 设置
-        """
+    def __init__(self, screen: pygame.Surface):
 
-        # 设置窗口大小，分辨率
-        self.window_size: tuple = (1280, 720)
-        self.caption = "快艇骰子"
-
-        # 设置 LOGO
-        logo = pygame.image.load(os.path.join('Media', 'Pic', 'LOGO.jpeg'))
-        pygame.display.set_icon(logo)
-
-        # 初始化 pygame 模块
-        pygame.init()
-        pygame.display.set_caption(self.caption)
-        self.screen = pygame.display.set_mode(self.window_size)
-
-        # 显示背景
-        disBG.disBg(self.screen)
-
-        # 开头视频
-        start0Video = VideoFileClip("Media/Video/Start0720.mp4").subclip(0, 3.3)
-        startVideo = VideoFileClip("Media/Video/Start720.mp4").subclip(0, 2.4)
-        start0Video.preview()
-        startVideo.preview()
-        startVideo.close()
-        start0Video.close()
+        self.screen = screen
         # 刷新视频的结束
         disBG.disBg(self.screen)
 
@@ -71,6 +46,7 @@ class SpeedboatDice:
                 # 如果按下了退出按钮
                 if event.type == pygame.QUIT:
                     running = False
+                    break
                 # 如果接收到游戏开始
                 elif event.type == GAME_START:
                     # 清空队列中保留的用户事件
@@ -79,6 +55,11 @@ class SpeedboatDice:
                     pygame.event.post(pygame.event.Event(RoundStart))
                 elif event.type == GAME_END:
                     pass
+                elif event.type == RollEvent:
+                    r.diceGroup.rollNotRemaining()
+                    r.diceGroup.displayDices(self.screen)
+                    pygame.time.wait(300)
+                    pygame.display.update()
                 # 接收到保留 第 K 个骰子事件
                 elif event.type == RemainK:
                     # 停止接受用户输入
@@ -103,7 +84,6 @@ class SpeedboatDice:
                     r.roll()
                 # 接收到Roll结束事件
                 elif event.type == RollEnd:
-                    disChoice(r.diceGroup, scoreBoards[r.userNo], r.userNo, self.screen)
                     # 清空队列中保留的用户事件
                     ClearAllUserEventsInQueue()
                     # 开始接受用户输入
@@ -131,6 +111,11 @@ class SpeedboatDice:
                     AllowUserInput()
                     roundCount += 1
                     r = Round(scoreBoards)
+                    r.diceGroup.displayDices(self.screen)
+                    disChoice(r.diceGroup, scoreBoards[r.userNo], r.userNo, self.screen)
                 else:
                     processUserInput(event, r)
-            pygame.display.update()
+                disBG.disBg(self.screen)
+                r.diceGroup.displayDices(self.screen)
+                disChoice(r.diceGroup, scoreBoards[r.userNo], r.userNo, self.screen)
+                pygame.display.update()

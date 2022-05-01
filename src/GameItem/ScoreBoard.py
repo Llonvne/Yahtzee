@@ -4,14 +4,12 @@ from src.GameItem.GameItem import GameItem
 
 
 class Scoreboard(GameItem):
+
     def getPygameSurface(self) -> pygame.Surface:
         pass
 
-    def __init__(self):
-        """
-        Initialize the scoreboard
-        """
-
+    def __init__(self, screen: pygame.Surface):
+        self.screen = screen
         # 数字区域
         self.one = 0
         self.two = 0

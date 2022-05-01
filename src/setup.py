@@ -3,11 +3,10 @@ import os
 import pygame
 
 from SpeedboatDice import SpeedboatDice
-from src import video
+from src import video, music
 
-"""
-初始化 pygame 设置
-"""
+# 初始化 pygame 设置
+
 # 设置窗口大小，分辨率
 window_size: tuple = (1280, 720)
 caption = "快艇骰子"
@@ -21,7 +20,11 @@ pygame.init()
 pygame.display.set_caption(caption)
 screen = pygame.display.set_mode(window_size)
 
-# 初始化
+# 播放视频
 video.play()
 
+# 播放BGM
+music.play()
+
+# 启动游戏
 SpeedboatDice(screen).run()

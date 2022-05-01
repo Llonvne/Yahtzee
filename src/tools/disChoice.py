@@ -1,12 +1,9 @@
 import pygame
-
-from src.GameItem import ScoreBoard
-from src.GameItem.DiceGroup import DiceGroup
+from src.round import Round
 from src.tools.text import displaytext
 
 
-def disChoice(diceGroup: DiceGroup, scoreBoard: ScoreBoard,
-              userNo: int, screen: pygame.Surface) -> None:
+def disChoice(round:Round, screen: pygame.Surface) -> None:
     """
     Display the choice of dice to be kept.
     :param diceGroup:
@@ -15,6 +12,9 @@ def disChoice(diceGroup: DiceGroup, scoreBoard: ScoreBoard,
     :param screen:
     :return:
     """
+    userNo = round.userNo
+    scoreBoard = round.scoreBoard[round.userNo]
+    diceGroup = round.diceGroup
     # 显示 1
     if scoreBoard.one > 0:
         displaytext(screen, (0, userNo), scoreBoard.one, True)

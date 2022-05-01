@@ -1,17 +1,19 @@
 import pygame.event
 from pygame.event import Event as Event
-from pygame.event import post as post
 
 from events import *
 from round import Round
+from src import events
 
 
 def BlockUserInput():
     """
     该函数将会立刻阻断所有用户事件
     :return:
+
+    # todo 该函数需要实现
     """
-    pygame.event.set_blocked((RemainK, RollNow, ChooseK))
+    # pygame.event.set_blocked((RemainK, RollNow, ChooseK))
 
 
 def AllowUserInput():
@@ -27,7 +29,7 @@ def ClearAllUserEventsInQueue():
     该函数将会清除队列中所有用户事件
     :return:
     """
-    pygame.event.clear((RemainK, RollNow, ChooseK))
+    # todo 该函数需要实现
 
 
 def remainingK(k: int) -> None:
@@ -35,7 +37,16 @@ def remainingK(k: int) -> None:
     如果用户选择保留/不保留 第 K 个骰子，请立刻触发该事件
     :return:
     """
-    post(Event(RemainK, {"用户事件": "保留第K个骰子", "remain": k}))
+    events.remainEvent(k)
+
+
+def chooseKScore(k: int) -> None:
+    """
+    如果选择 第k个分数，请立刻触发该函数
+    :param k:
+    :return:
+    """
+    events.chooseEvent(k)
 
 
 def roll() -> None:
@@ -43,18 +54,7 @@ def roll() -> None:
     如果用户决定开始投骰子，请触发该函数
     :return:
     """
-    post(Event(RollNow, {"用户事件": "投骰子"}))
-
-
-def chooseKScore(k: int) -> None:
-    """
-    用户选择填入
-    请注意 k 按照文字显示二维矩阵坐标，不需要返回用户 ID，只需要行号
-    用户不应该选择小记，奖励分，总计分数
-    :param k:
-    :return: None
-    """
-    post(Event(ChooseK, {"用户事件": "记录第K个分数", "no": k}))
+    events.RollStartEvent()
 
 
 def processUserInput(event: Event, round: Round):

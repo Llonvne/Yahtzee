@@ -2,7 +2,7 @@ import pygame
 
 from src.GameItem import ScoreBoard
 from src.GameItem.DiceGroup import DiceGroup
-from text import displaytext
+from src.tools.text import displaytext
 
 
 def disChoice(diceGroup: DiceGroup, scoreBoard: ScoreBoard,

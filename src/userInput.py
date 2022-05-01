@@ -1,3 +1,4 @@
+import pygame.event
 from pygame.event import Event as Event
 from pygame.event import post as post
 
@@ -19,6 +20,14 @@ def AllowUserInput():
     :return:
     """
     pygame.event.set_blocked(None)
+
+
+def ClearAllUserEventsInQueue():
+    """
+    该函数将会清除队列中所有用户事件
+    :return:
+    """
+    pygame.event.clear((RemainK, RollNow, ChooseK))
 
 
 def remainingK(k: int) -> None:

@@ -1,12 +1,10 @@
 import os.path
-from enum import Enum
 
+import pygame.event
 from moviepy.editor import *
-from pygame.event import Event as Event
-from pygame.event import post as post
 
-from events import *
 from src.tools import disBG
+from src.userInput import *
 
 
 class SpeedboatDice:
@@ -55,18 +53,78 @@ class SpeedboatDice:
         启动游戏
         :return:
         """
+        r = Round()
+        roundCount = 0
 
         # 游戏循环
         # 开始游戏阶段
         running = True
         while running:
-            # a.rollNotRemaining()
-            # a.displayDices(self.screen)
-            # pygame.time.wait(300)
             for event in pygame.event.get():
                 # 如果按下了退出按钮
                 if event.type == pygame.QUIT:
                     running = False
-                # if event.type == GAME_START:
-
+                # 如果接收到游戏开始
+                elif event.type == GAME_START:
+                    # 清空队列中保留的用户事件
+                    ClearAllUserEventsInQueue()
+                    # 立刻开始接受用户输入
+                    AllowUserInput()
+                    # 立刻推入 RoundStart 事件
+                    pygame.event.post(pygame.event.Event(RoundStart))
+                elif event.type == GAME_END:
+                    pass
+                # 接收到保留 第 K 个骰子事件
+                elif event.type == RemainK:
+                    # 停止接受用户输入
+                    BlockUserInput()
+                    # 清空队列中保留的用户事件
+                    ClearAllUserEventsInQueue()
+                    # 调用 Round 处理
+                    r.remain(event['remaining'])
+                # 接收到保留成功后
+                elif event.type == RemainKEnd:
+                    # 清空队列中保留的用户事件
+                    ClearAllUserEventsInQueue()
+                    # 开始处理用户事件
+                    AllowUserInput()
+                # 接收到投骰子事件
+                elif event.type == RollNow:
+                    # 停止接受用户输入
+                    BlockUserInput()
+                    # 清空队列中保留的用户事件
+                    ClearAllUserEventsInQueue()
+                    # 调用 Round 处理 roll 操作
+                    r.roll()
+                # 接收到Roll结束事件
+                elif event.type == RollEnd:
+                    # 清空队列中保留的用户事件
+                    ClearAllUserEventsInQueue()
+                    # 开始接受用户输入
+                    AllowUserInput()
+                # 选择 第 K 个分数
+                elif event.type == ChooseK:
+                    # 立刻停止用户输入
+                    BlockUserInput()
+                    # 清除队列中用户事件
+                    ClearAllUserEventsInQueue()
+                    # 调用 Round 处理用户事件
+                    r.choose(event['no'])
+                elif event.type == ChooseKEnd:
+                    AllowUserInput()
+                # 接收到 RoundEnd事件
+                elif event.type == RoundEnd:
+                    BlockUserInput()
+                    ClearAllUserEventsInQueue()
+                    if roundCount == 12:
+                        pygame.event.post(pygame.event.Event(GAME_END))
+                    else:
+                        pygame.event.post(pygame.event.Event(RoundStart))
+                # 接收到 RoundStart
+                elif event.type == RoundStart:
+                    AllowUserInput()
+                    roundCount += 1
+                    r = Round()
+                else:
+                    processUserInput(event, r)
             pygame.display.update()

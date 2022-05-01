@@ -11,5 +11,14 @@ class Round:
     def isRemaing(self) -> bool:
         return False
 
-    def isChooseable(self,k:int) -> bool:
+    def isChooseable(self, k: int) -> bool:
         return False
+
+    def remain(self, k: int):
+        pass
+
+    def roll(self):
+        pass
+
+    def choose(self,k:int):
+        pass

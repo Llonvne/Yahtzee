@@ -15,12 +15,6 @@ class DiceGroup:
         :param screen:
         :return: None
         """
-
-        """
-        Diff 决定了骰子之前的水平距离
-        Height 决定了骰子与上边界的距离
-        Left 与 右边界的距离
-        """
         height = 60
         Left = 550
         diff = 100
@@ -34,22 +28,22 @@ class DiceGroup:
         """
         self.dice: list = [Dice() for i in range(5)]
 
-    def setValue(self, no: int, value: int) -> None:
-        """
-        Set the value of the dice.
-        :param no: 骰子的编号
-        :param value: 骰子的数值
-        :return: None
-        """
-        self.dice[no] = value
-
-    def getValue(self, no: int) -> int:
-        """
-        Get the value of the dice.
-        :param no: 骰子的编号
-        :return: 骰子的值
-        """
-        return self.dice[no]
+    # def setValue(self, no: int, value: int) -> None:
+    #     """
+    #     Set the value of the dice.
+    #     :param no: 骰子的编号
+    #     :param value: 骰子的数值
+    #     :return: None
+    #     """
+    #     self.dice[no] = value
+    #
+    # def getValue(self, no: int) -> int:
+    #     """
+    #     Get the value of the dice.
+    #     :param no: 骰子的编号
+    #     :return: 骰子的值
+    #     """
+    #     return self.dice[no]
 
     def setRemaining(self, no: int, remaining: bool) -> None:
         """

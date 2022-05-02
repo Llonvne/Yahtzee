@@ -1,7 +1,7 @@
 import pygame.event
 from pygame.event import Event as Event
 
-from events import *
+from src.events.events import *
 from round import Round
 from src import events
 

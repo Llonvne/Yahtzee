@@ -1,9 +1,9 @@
 import pygame.event
 
 from src.GameData import GameData
-from src.eventHandlers.GameControllerEventHandler import GameControllerEventHandler
-from src.eventHandlers.RollEventHandler import RollEventHandler
-from src.tools import disBG
+from src.events.handler.GameControllerEventHandler import GameControllerEventHandler
+from src.events.handler.RollEventHandler import RollEventHandler
+from src.events.handler.ScreenEventHandler import ScreenController
 from src.userInput import *
 
 # Debug
@@ -16,7 +16,9 @@ class SpeedboatDice:
         self.screen = screen
 
         # 向队列中推入游戏开始事件
-        events.StartGameEvent()
+        StartGameEvent()
+
+        self.fcclock = pygame.time.Clock()
 
     def run(self):
         """
@@ -25,10 +27,15 @@ class SpeedboatDice:
         """
         # 初始化游戏数据
         data = GameData(self.screen)
+
         # 初始化游戏控制事件处理
-        gameControllerEventHandler = GameControllerEventHandler(data, self.screen)
+        gameControllerEventHandler = GameControllerEventHandler(data)
+
         # 初始化骰子事件控制器
-        rollEventHandler = RollEventHandler(data, self.screen)
+        rollEventHandler = RollEventHandler(data)
+
+        # 初始化屏幕控制器
+        screenController = ScreenController(data)
 
         # 游戏循环
         # 开始游戏阶段
@@ -37,20 +44,32 @@ class SpeedboatDice:
             for event in pygame.event.get():
 
                 """
-                Event Debug 设置是否显示
+                通过 event_debug 定义是否显示事件
                 """
-                if event_debug:
+                if event_debug and event.type >= pygame.USEREVENT:
                     print(event)
+
+                """
+                如果事件类型为退出，则立刻执行退出
+                """
                 if event.type == pygame.QUIT:
                     running = False
                     quit(0)
-                # --- 游戏程序控制事件 --- # {event_type:GameControllerEvent}
-                elif event.__dict__.get(events.event_type) == events.GameControllerEvent:
+                # 游戏程序控制事件
+                # {event_type:GameControllerEvent}
+                elif event.__dict__.get(event_type) == GameControllerEvent:
                     # 调用GameControllerEventHandler处理
                     gameControllerEventHandler.event(event)
-                # --- 投骰子控制事件 --- # {event_type:RollControllerEvent}
-                elif event.__dict__.get(events.event_type) == events.RollControllerEvent:
+                # 投骰子控制事件
+                # {event_type:RollControllerEvent}
+                elif event.__dict__.get(event_type) == RollControllerEvent:
                     rollEventHandler.event(event)
+                elif event.__dict__.get(event_type) == ScreenControlEvent \
+                        or event.__dict__.get(event_type) == ScoreUpdateEvent:
+                    screenController.event(event)
+                elif event.__dict__.get(event_type) == TimeControlEvent:
+                    if event.__dict__.get(sub_type) == WaitEvent:
+                        pygame.time.wait(event.__dict__.get('ms'))
                 # 选择 第 K 个分数
                 elif event.type == ChooseK:
                     # 立刻停止用户输入
@@ -64,7 +83,3 @@ class SpeedboatDice:
                 # 由 processUserInput 处理鼠标的事件
                 elif event.type == pygame.MOUSEMOTION:
                     processUserInput(event, data.round)
-                disBG.disBg(self.screen)
-                data.round.diceGroup.displayDices(self.screen)
-                data.displayScore()
-                pygame.display.update()

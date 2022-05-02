@@ -1,8 +1,9 @@
 import pygame.event
 
-from src import events
+from src.events import events
 from src.GameItem import ScoreBoard
 from src.GameItem.DiceGroup import DiceGroup
+
 
 
 class Round:
@@ -59,14 +60,14 @@ class Round:
                 # 引发 RollEvent 事件
                 events.RollEvent(5)
                 # 引发 RollEnd 事件
-                events.RoundEndEvent()
+                events.RollEndEvent()
                 self.chance1 -= 1
         else:
             if self.chance2 > 0:
                 # 引发 RollEvent 事件
                 events.RollEvent(5)
                 # 引发 RollEnd 事件
-                events.RoundEndEvent()
+                events.RollEndEvent()
                 self.chance2 -= 1
         pass
 
@@ -97,3 +98,8 @@ class Round:
             self.scoreBoard[self.userNo].largeStraights += self.diceGroup.largeStraights()
         elif k == 13:
             self.scoreBoard[self.userNo].speedboat += self.diceGroup.speedboat()
+        # 转换 userNo
+        self.userNo = 1 - self.userNo
+
+        # 每次Choose 完后引发更新事件
+        events.displayInfoEvent()

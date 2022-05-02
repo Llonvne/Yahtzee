@@ -4,6 +4,7 @@ import pygame
 
 from src import events
 from src.GameData import GameData
+from src.events.events import *
 
 
 class EventHandler:
@@ -30,8 +31,8 @@ class EventHandler:
 
     @staticmethod
     def getType(event: pygame.event.Event) -> str:
-        return event.__dict__.get(events.event_type)
+        return event.__dict__.get(event_type)
 
     @staticmethod
     def get_sub_type(event: pygame.event.Event) -> str:
-        return event.__dict__.get(events.sub_type)
+        return event.__dict__.get(sub_type)

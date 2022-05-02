@@ -27,22 +27,28 @@ class ScreenController(EventHandler):
         # 显示背景事件
         if self.get_sub_type(event) == DisplayBackgroundEvent:
             self.disBGandRoll()
-        # 显示分数事件
+            # 显示分数事件
         if self.get_sub_type(event) == DisplayInfoEvent:
             # 显示选择的小分
+            self.data.displayChoosed(1 - self.data.round.userNo)
             self.data.displayScore()
-            # 显示奖励分
-            if self.data.scoreBoards[self.data.round.userNo].isReward() >= 63:
-                displaytext(self.data.screen, (7, self.data.round.userNo), 35, True)
-            else:
-                displaytext(self.data.screen, (7, self.data.round.userNo), 0, True)
-            # 显示小记
-            displaytext(self.data.screen, (6, self.data.round.userNo),
-                        self.data.scoreBoards[self.data.round.userNo].totalScoreofNumber(), True)
+            for userNo in range(2):
+                # 显示奖励分
+                if self.data.scoreBoards[userNo].isReward() >= 63:
+                    displaytext(self.data.screen, (7, userNo), 35, True)
+                else:
+                    displaytext(self.data.screen, (7, userNo), 0, True)
+                # 显示小记
+                displaytext(self.data.screen, (6, userNo),
+                            self.data.scoreBoards[userNo].totalScoreofNumber(), True)
+                # 显示总分
+                displaytext(self.data.screen, (14, userNo),
+                            self.data.scoreBoards[userNo].totalScore(), True)
             # 调用屏幕刷新事件，刷新屏幕
             screenRefreshEvent()
         elif self.get_sub_type(event) == DisplayDicesEvent:
             self.data.round.diceGroup.displayDices(self.data.screen)
+            screenRefreshEvent()
 
     def disBGandRoll(self):
         disBg(self.data.screen)

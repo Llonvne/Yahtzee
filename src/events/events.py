@@ -24,6 +24,9 @@ smallCountUpdatedEvent = '奖励分小记更新事件'
 rewardUpdatedEvent = '奖励分更新事件'
 totalUpdateEvent = '总分更新事件'
 
+ChooseKEvent = "选择第K个分数事件"
+ChooseKEndEvent = '选择第K个分数结束事件'
+
 ScreenControlEvent = "屏幕控制事件"
 ScreenRefreshEvent = "屏幕刷新事件"
 DisplayBackgroundEvent = "显示背景事件"
@@ -42,12 +45,20 @@ ChooseK = pygame.USEREVENT + 12
 ChooseKEnd = pygame.USEREVENT + 13
 
 
+def chooseKEvent(k: int):
+    pygame.event.post(
+        pygame.event.Event(pygame.USEREVENT + 12, {event_type: ChooseEvent, sub_type: ChooseKEvent, "no": k})
+    )
+
+
 def StartGameEvent():
-    pygame.event.post(pygame.event.Event(pygame.USEREVENT + 1, {event_type: GameControllerEvent, sub_type: Game_Start}))
+    pygame.event.post(
+        pygame.event.Event(pygame.USEREVENT + 1, {event_type: GameControllerEvent, sub_type: Game_Start}))
 
 
 def EndGameEvent():
-    pygame.event.post(pygame.event.Event(pygame.USEREVENT + 2, {event_type: GameControllerEvent, sub_type: Game_End}))
+    pygame.event.post(
+        pygame.event.Event(pygame.USEREVENT + 2, {event_type: GameControllerEvent, sub_type: Game_End}))
 
 
 def RoundStartEvent():
@@ -56,20 +67,24 @@ def RoundStartEvent():
 
 
 def RoundEndEvent():
-    pygame.event.post(pygame.event.Event(pygame.USEREVENT + 3, {event_type: GameControllerEvent, sub_type: Round_End}))
+    pygame.event.post(
+        pygame.event.Event(pygame.USEREVENT + 3, {event_type: GameControllerEvent, sub_type: Round_End}))
 
 
 def RollEvent(k: int):
-    rollEvent = pygame.event.Event(pygame.USEREVENT + 4, {event_type: RollControllerEvent, sub_type: Roll, 'times': k})
+    rollEvent = pygame.event.Event(pygame.USEREVENT + 4,
+                                   {event_type: RollControllerEvent, sub_type: Roll, 'times': k})
     pygame.event.post(rollEvent)
 
 
 def RollStartEvent():
-    pygame.event.post(pygame.event.Event(pygame.USEREVENT + 6, {event_type: RollControllerEvent, sub_type: Roll_Start}))
+    pygame.event.post(
+        pygame.event.Event(pygame.USEREVENT + 6, {event_type: RollControllerEvent, sub_type: Roll_Start}))
 
 
 def RollEndEvent():
-    pygame.event.post(pygame.event.Event(pygame.USEREVENT + 7, {event_type: RollControllerEvent, sub_type: Roll_End}))
+    pygame.event.post(
+        pygame.event.Event(pygame.USEREVENT + 7, {event_type: RollControllerEvent, sub_type: Roll_End}))
 
 
 def remainEvent(k: int) -> None:
@@ -108,7 +123,8 @@ def screenRefreshEvent() -> None:
 
 def displayBackgroundEvent() -> None:
     pygame.event.post(
-        pygame.event.Event(pygame.USEREVENT + 18, {event_type: ScreenControlEvent, sub_type: DisplayBackgroundEvent})
+        pygame.event.Event(pygame.USEREVENT + 18,
+                           {event_type: ScreenControlEvent, sub_type: DisplayBackgroundEvent})
     )
 
 

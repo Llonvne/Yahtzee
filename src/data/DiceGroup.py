@@ -1,6 +1,6 @@
 import pygame
 
-from src.GameItem.Dice import Dice
+from src.data.Dice import Dice
 
 
 class DiceGroup:

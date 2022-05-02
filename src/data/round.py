@@ -1,7 +1,7 @@
 import pygame.event
 
-from src.GameItem import ScoreBoard
-from src.GameItem.DiceGroup import DiceGroup
+from src.data import ScoreBoard
+from src.data.DiceGroup import DiceGroup
 from src.events import events
 
 

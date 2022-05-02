@@ -1,6 +1,6 @@
 import pygame
 
-from src.GameItem.GameItem import GameItem
+from src.data.GameItem import GameItem
 
 
 class Scoreboard(GameItem):

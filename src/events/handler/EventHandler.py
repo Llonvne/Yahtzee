@@ -1,6 +1,6 @@
 import abc
 
-from src.GameData import GameData
+from src.data.GameData import GameData
 from src.events.events import *
 
 

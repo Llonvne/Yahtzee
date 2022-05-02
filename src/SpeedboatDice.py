@@ -1,10 +1,10 @@
 import pygame.event
 
-from src.GameData import GameData
+from src.data.GameData import GameData
 from src.events.handler.GameControllerEventHandler import GameControllerEventHandler
 from src.events.handler.RollEventHandler import RollEventHandler
 from src.events.handler.ScreenEventHandler import ScreenController
-from src.userInput import *
+from src.tools.userInput import *
 
 # Debug
 event_debug = True
@@ -71,13 +71,13 @@ class SpeedboatDice:
                     if event.__dict__.get(sub_type) == WaitEvent:
                         pygame.time.wait(event.__dict__.get('ms'))
                 # 选择 第 K 个分数
-                elif event.type == ChooseK:
-                    # 立刻停止用户输入
-                    BlockUserInput()
-                    # 清除队列中用户事件
-                    ClearAllUserEventsInQueue()
-                    # 调用 Round 处理用户事件
-                    data.round.choose(event['no'])
+                elif event.__dict__.get(event_type) == ChooseEvent:
+                    if event.__dict__.get(sub_type) == ChooseKEvent:
+                        data.round.choose(event.__dict__.get("no"))
+                        displayBackgroundEvent()
+                        displayDicesEvent()
+                        displayInfoEvent()
+                        screenRefreshEvent()
                 elif event.type == ChooseKEnd:
                     AllowUserInput()
                 # 由 processUserInput 处理鼠标的事件

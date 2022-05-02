@@ -1,6 +1,6 @@
-from src.GameItem import ScoreBoard
-from src.round import Round
-from src.tools.disChoice import disChoice
+from src.data import ScoreBoard
+from src.data.round import Round
+from src.tools.disChoice import disChoice, disChoosed
 
 
 class GameData:
@@ -16,3 +16,6 @@ class GameData:
 
     def displayScore(self):
         disChoice(self.round, self.screen)
+
+    def displayChoosed(self, userNo):
+        disChoosed(userNo, self.scoreBoards[userNo], self.screen)

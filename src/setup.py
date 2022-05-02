@@ -3,7 +3,7 @@ import os
 import pygame
 
 from SpeedboatDice import SpeedboatDice
-from src import video, music
+from src.VideoMusicControl import video, music
 
 # 初始化 pygame 设置
 

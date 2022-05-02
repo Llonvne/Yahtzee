@@ -1,9 +1,8 @@
 import pygame.event
 from pygame.event import Event as Event
 
+from src.data.round import Round
 from src.events.events import *
-from round import Round
-from src import events
 
 
 def BlockUserInput():
@@ -37,7 +36,7 @@ def remainingK(k: int) -> None:
     如果用户选择保留/不保留 第 K 个骰子，请立刻触发该事件
     :return:
     """
-    events.remainEvent(k)
+    remainEvent(k)
 
 
 def chooseKScore(k: int) -> None:
@@ -46,7 +45,7 @@ def chooseKScore(k: int) -> None:
     :param k:
     :return:
     """
-    events.chooseEvent(k)
+    chooseKEvent(k)
 
 
 def roll() -> None:
@@ -54,7 +53,7 @@ def roll() -> None:
     如果用户决定开始投骰子，请触发该函数
     :return:
     """
-    events.RollStartEvent()
+    RollStartEvent()
 
 
 def processUserInput(event: Event, round: Round):

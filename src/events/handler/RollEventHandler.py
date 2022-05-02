@@ -1,5 +1,5 @@
-from src import music
-from src.GameData import GameData
+from src.VideoMusicControl import music
+from src.data.GameData import GameData
 from src.events.events import *
 from src.events.handler.EventHandler import EventHandler
 
@@ -44,5 +44,5 @@ class RollEventHandler(EventHandler):
 
         # 接收到Roll结束事件
         elif self.get_sub_type(event) == Roll_End:
-            music.pause()
+            chooseKEvent(0)
             pass

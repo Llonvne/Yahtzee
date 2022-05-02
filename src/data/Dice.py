@@ -2,19 +2,19 @@ import os
 
 import pygame
 
-from src.GameItem.GameItem import GameItem
+from src.data.GameItem import GameItem
 
 import random
 
 """
 DicePics
 """
-DicePics: list = [pygame.image.load(os.path.join('Media', 'Pic', 'one.png')),
-                  pygame.image.load(os.path.join('Media', 'Pic', 'two.png')),
-                  pygame.image.load(os.path.join('Media', 'Pic', 'three.png')),
-                  pygame.image.load(os.path.join('Media', 'Pic', 'four.png')),
-                  pygame.image.load(os.path.join('Media', 'Pic', 'five.png')),
-                  pygame.image.load(os.path.join('Media', 'Pic', 'six.png'))]
+DicePics: list = [pygame.image.load(os.path.join('Media', 'Pic', '1.png')),
+                  pygame.image.load(os.path.join('Media', 'Pic', '2.png')),
+                  pygame.image.load(os.path.join('Media', 'Pic', '3.png')),
+                  pygame.image.load(os.path.join('Media', 'Pic', '4.png')),
+                  pygame.image.load(os.path.join('Media', 'Pic', '5.png')),
+                  pygame.image.load(os.path.join('Media', 'Pic', '6.png'))]
 
 
 class Dice(GameItem):

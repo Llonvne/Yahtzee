@@ -1,7 +1,6 @@
 from src.GameData import GameData
-from src.events.handler.EventHandler import EventHandler
-
 from src.events.events import *
+from src.events.handler.EventHandler import EventHandler
 from src.round import Round
 
 
@@ -31,14 +30,14 @@ class GameControllerEventHandler(EventHandler):
 
         # 处理回合开始事件
         elif self.get_sub_type(event) == Round_Start:
-            self.roundCount += 1
+            self.roundCount += 12
             self.data.round = Round(self.data.scoreBoards)
             displayInfoEvent()
             RollStartEvent()
 
         # 处理回合结束事件
         elif self.get_sub_type(event) == Round_End:
-            if self.roundCount == 12:
+            if self.roundCount >= 12:
                 EndGameEvent()
             else:
                 RoundStartEvent()

@@ -1,9 +1,8 @@
 import pygame.event
 
-from src.events import events
 from src.GameItem import ScoreBoard
 from src.GameItem.DiceGroup import DiceGroup
-
+from src.events import events
 
 
 class Round:
@@ -59,15 +58,11 @@ class Round:
             if self.chance1 > 0:
                 # 引发 RollEvent 事件
                 events.RollEvent(5)
-                # 引发 RollEnd 事件
-                events.RollEndEvent()
                 self.chance1 -= 1
         else:
             if self.chance2 > 0:
                 # 引发 RollEvent 事件
                 events.RollEvent(5)
-                # 引发 RollEnd 事件
-                events.RollEndEvent()
                 self.chance2 -= 1
         pass
 

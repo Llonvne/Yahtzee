@@ -1,3 +1,4 @@
+from src import music
 from src.GameData import GameData
 from src.events.events import *
 from src.events.handler.EventHandler import EventHandler
@@ -10,9 +11,9 @@ class RollEventHandler(EventHandler):
 
     def event(self, event: pygame.event.Event):
         if self.get_sub_type(event) == Roll:
-            # 接收到 Roll 事件后开始 Roll 操作
-            self.data.round.diceGroup.rollNotRemaining()
             if event.__dict__['times'] > 0:
+                # 接收到 Roll 事件后开始 Roll 操作
+                self.data.round.diceGroup.rollNotRemaining()
                 # 显示背景事件
                 displayBackgroundEvent()
                 # 显示骰子
@@ -25,6 +26,8 @@ class RollEventHandler(EventHandler):
                 wait(300)
                 # 推入下一个事件
                 RollEvent(event.__dict__['times'] - 1)
+            else:
+                RollEndEvent()
 
         # 接收到保留 第 K 个骰子事件
         elif self.get_sub_type(event) == RemainEvent:
@@ -40,5 +43,6 @@ class RollEventHandler(EventHandler):
             self.data.round.roll()
 
         # 接收到Roll结束事件
-        elif self.get_sub_type(event) == Round_End:
+        elif self.get_sub_type(event) == Roll_End:
+            music.pause()
             pass

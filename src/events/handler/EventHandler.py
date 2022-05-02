@@ -1,8 +1,5 @@
 import abc
 
-import pygame
-
-from src import events
 from src.GameData import GameData
 from src.events.events import *
 
@@ -15,7 +12,7 @@ class EventHandler:
 
     def __init__(self, data: GameData):
         """
-        构造方法，默认构造
+        构造方法，默认构造data到事件处理库
         :param data:
         """
         self.data = data
@@ -23,7 +20,7 @@ class EventHandler:
     @abc.abstractmethod
     def event(self, event: pygame.event.Event):
         """
-        事件处理抽象方法
+        提供抽象接口
         :param event:
         :return:
         """

@@ -22,8 +22,6 @@ class GameControllerEventHandler(EventHandler):
 
         # 处理游戏开始事件
         if self.get_sub_type(event) == Game_Start:
-            # 清空队列中保留的用户事件
-            ClearAllUserEventsInQueue()
             # 立刻推入 RoundStart 事件
             events.RoundStartEvent()
 
@@ -33,11 +31,8 @@ class GameControllerEventHandler(EventHandler):
 
         # 处理回合开始事件
         elif self.get_sub_type(event) == Round_Start:
-            userInput.AllowUserInput()
             self.roundCount += 1
             self.data.round = Round(self.data.scoreBoards)
-            self.data.round.diceGroup.displayDices(self.screen)
-            self.data.displayScore()
 
         # 处理回合结束事件
         elif self.get_sub_type(event) == events.Round_End:

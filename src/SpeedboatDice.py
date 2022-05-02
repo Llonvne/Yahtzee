@@ -43,9 +43,7 @@ class SpeedboatDice:
                     print(event)
                 if event.type == pygame.QUIT:
                     running = False
-                    break
-                    pass
-
+                    quit(0)
                 # --- 游戏程序控制事件 --- # {event_type:GameControllerEvent}
                 elif event.__dict__.get(events.event_type) == events.GameControllerEvent:
                     # 调用GameControllerEventHandler处理

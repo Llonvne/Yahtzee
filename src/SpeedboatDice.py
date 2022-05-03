@@ -1,6 +1,7 @@
 import pygame.event
 
 from src.data.GameData import GameData
+from src.debug import eventPrint
 from src.events.handler.GameControllerEventHandler import GameControllerEventHandler
 from src.events.handler.RollEventHandler import RollEventHandler
 from src.events.handler.ScreenEventHandler import ScreenController
@@ -17,8 +18,6 @@ class SpeedboatDice:
 
         # 向队列中推入游戏开始事件
         StartGameEvent()
-
-        self.fcclock = pygame.time.Clock()
 
     def run(self):
         """
@@ -46,9 +45,8 @@ class SpeedboatDice:
                 """
                 通过 event_debug 定义是否显示事件
                 """
-                if event_debug and event.type >= pygame.USEREVENT:
-                    print(event)
-
+                if event_debug:
+                    eventPrint.eventPrint(event)
                 """
                 如果事件类型为退出，则立刻执行退出
                 """
@@ -81,5 +79,5 @@ class SpeedboatDice:
                 elif event.type == ChooseKEnd:
                     AllowUserInput()
                 # 由 processUserInput 处理鼠标的事件
-                elif event.type == pygame.MOUSEMOTION:
+                elif event.type == pygame.MOUSEBUTTONUP:
                     processUserInput(event, data.round)

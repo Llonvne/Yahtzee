@@ -67,3 +67,6 @@ def processUserInput(event: Event, round: Round):
     :param round:
     :return:
     """
+    if 1075 < event.__dict__.get('pos')[0] < 1075 + 105 and 615 < event.__dict__.get('pos')[1] < 615 + 81:
+        print("123")
+        roll()

@@ -16,7 +16,7 @@ class Dice(Display):
         """
         初始化 值和是否保留
         """
-        self.value: int = 0
+        self.__value: int = 0
         self.isRemain: bool = False
 
         self.roll()
@@ -27,14 +27,14 @@ class Dice(Display):
         :return:
         """
         if not self.isRemain:
-            self.value = randint(1, 6)
+            self.__value = randint(1, 6)
 
     def __int__(self) -> int:
         """
         定义转换为 int 的方法，就是返回bool
         :return: int
         """
-        return self.value
+        return self.__value
 
     def __bool__(self) -> bool:
         """
@@ -45,4 +45,7 @@ class Dice(Display):
 
     def toDisplayable(self):
         # todo 实现换图
-        return dicesPicGroup[self.value - 1].toDisplayable()
+        return dicesPicGroup[self.__value - 1].toDisplayable()
+
+    def getValue(self) -> int:
+        return self.__value

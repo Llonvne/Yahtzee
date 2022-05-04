@@ -2,7 +2,9 @@ from src.resetable.resetable import Resetable
 
 
 class Board(Resetable):
-
+    """
+    分数类
+    """
     def reset(self):
         for key in self.board.keys():
             self.board[key] = 0

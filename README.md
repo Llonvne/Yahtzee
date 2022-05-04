@@ -10,6 +10,7 @@ Hello!🥳,这是我们的Python课程设计的作业，素材来自世界51游�
 绝大部分规则遵守 世界51游戏大全-任天堂，与 Wiki 上的稍有出入
 
 待完成事项：
+
 * 游戏鼠标控制部分逻辑
 * 游戏各种动画，音效添加
 * 代码封装行
@@ -19,8 +20,4 @@ Hello!🥳,这是我们的Python课程设计的作业，素材来自世界51游�
 * pygame
 * ffmpeg (conda install ffmpeg -c conda-forge)
 * moviepy
-
-Beta 2.0 新增:
-
-* multipledispatch
 

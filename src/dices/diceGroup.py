@@ -8,6 +8,10 @@ class DiceGroup(Resetable):
             dice.roll()
 
     def toDisplayable(self):
+        """
+        转换为可显示对象
+        :return:
+        """
         display = []
         height = 60
         Left = 550

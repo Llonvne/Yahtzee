@@ -1,5 +1,12 @@
+from pygame import Surface
+
 from src.board.Board import Board
 from src.game.media.display.text import displaytext
+from src.player.Player import Player
+
+
+def displayChoice(player: Player, screen: Surface):
+    disChoice(player.board, player.diceBoard, player.no, screen)
 
 
 def disChoice(board: Board, diceGroup, userNo, screen) -> None:

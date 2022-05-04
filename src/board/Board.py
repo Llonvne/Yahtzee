@@ -5,6 +5,7 @@ class Board(Resetable):
     """
     分数类
     """
+
     def reset(self):
         for key in self.board.keys():
             self.board[key] = 0
@@ -33,3 +34,6 @@ class Board(Resetable):
 
     def getScore(self, scorename: str) -> int:
         return self.board[scorename]
+
+    def getScores(self):
+        return self.board.items()

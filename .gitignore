@@ -128,10 +128,8 @@ dmypy.json
 # Pyre event_type checker
 .pyre/
 *.xml
-*.xml
 *.iml
 .DS_Store
-*.xml
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/inspectionProfiles/Project_Default.xml
 .idea/misc.xml

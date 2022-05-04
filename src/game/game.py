@@ -1,7 +1,7 @@
 import pygame
 
 from src import config
-from src.game.media.display.disChoice import disChoice
+from src.game.media.display.disChoice import displayChoice
 from src.game.media.display.display import Display
 from src.game.media.display.text import displaytext
 from src.game.media.types.music import Music
@@ -76,6 +76,10 @@ class Game:
 
     @staticmethod
     def getEventFromQueue() -> list[pygame.event.Event]:
+        """
+        获得事件队列
+        :return: list[pygame.event.Event]
+        """
         return pygame.event.get()
 
     def postEvent(self, type1, sub_type) -> None:
@@ -95,12 +99,14 @@ class Game:
         :param players:
         :return:
         """
+        # 获得回合内部玩家编号
         inTermPlayerNo = 0
         if players[1].isYourTerm:
             inTermPlayerNo = 1
         # 显示已经有的分数
-        disChoice(players[inTermPlayerNo].board, players[inTermPlayerNo].diceBoard, inTermPlayerNo, self.screen)
-        for score in players[inTermPlayerNo].board.board.items():
+        displayChoice(players[inTermPlayerNo], self.screen)
+        # 显示可选择分数
+        for score in players[inTermPlayerNo].board.getScores():
             if score[1] > 0:
                 displaytext(self.screen, (noToRead[score[0]], inTermPlayerNo), score[1], True)
         for i in range(2):
@@ -121,11 +127,21 @@ class Game:
         :param players: 玩家列表 用于显示玩家内部的骰子等
         :return:
         """
+
+        # 显示背景
         self.display((self.backGround, (0, 0)))
+
+        # 显示 Roll
         self.display((self.roll, (725, 600)))
+
+        # 显示分数
         self.displayerScore(*players)
+
+        # 显示当前玩家骰子
         if players[0].isYourTerm:
             self.displayDices(players[0].diceBoard.toDisplayable())
         else:
             self.displayDices(players[1].diceBoard.toDisplayable())
+
+        # 更新屏幕
         pygame.display.update()

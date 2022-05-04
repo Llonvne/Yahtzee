@@ -11,7 +11,6 @@ class Pic(Media, Display):
 
     def __init__(self, path: str):
         super().__init__(path)
-
         self._pic = None
 
     def _pygameLoad(self) -> None:

@@ -3,15 +3,12 @@ from src.game.media.types.pic import Pic
 
 class PicGroup:
     def __init__(self, paths: list[str]):
-        self._paths = paths
-        self._isLoad = False
-        self._medias: list[Pic] = list()
-
-    def _load(self):
-        for path in self._paths:
-            self._medias.append(Pic(path))
-        self._isLoad = True
+        self._pics = list()
+        for path in paths:
+            self._pics.append(Pic(path))
 
     def __getitem__(self, key) -> Pic:
-        self._load()
-        return self._medias[key]
+        return self._pics[key]
+
+    def __len__(self):
+        return len(self._pics)

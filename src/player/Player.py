@@ -15,6 +15,9 @@ class Player:
         self.chance -= 1
         self.diceBoard.roll()
 
+    def rollNotCostChances(self):
+        self.diceBoard.roll()
+
     def chooseScore(self, scoreName: str) -> None:
         pass
 

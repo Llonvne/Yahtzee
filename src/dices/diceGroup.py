@@ -4,8 +4,7 @@ from src.resetable.resetable import Resetable
 
 class DiceGroup(Resetable):
     def reset(self):
-        for dice in self.__dices:
-            dice.roll()
+        self.roll()
 
     def toDisplayable(self):
         """

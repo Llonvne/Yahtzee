@@ -5,7 +5,9 @@ from src.game.media.display.disChoice import displayChoice
 from src.game.media.display.display import Display
 from src.game.media.display.text import displaytext
 from src.game.media.types.effect import Effect
+from src.game.media.types.music import Music
 from src.game.media.types.pic import Pic
+from src.game.media.types.video import Video
 from src.player.Player import Player
 
 noToRead = {"one": 0, "two": 1, "three": 2, "four": 3, "five": 4, "six": 5,
@@ -40,11 +42,11 @@ class Game:
         )
 
         # 播放视频
-        # self.__videos = [Video(video_path).play() for video_path in config.default_video_group]
+        self.__videos = [Video(video_path).play() for video_path in config.default_video_group]
 
         # 播放 BGM
-        # self.BGM = Music(config.default_BGM)
-        # self.BGM.play()
+        self.BGM = Music(config.default_BGM)
+        self.BGM.play()
 
         # 显示 BG
         self.backGround = Pic(config.background_path)

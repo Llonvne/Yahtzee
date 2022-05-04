@@ -29,5 +29,12 @@ dicePics: list = [(os.path.join('Media', 'Pic', '11.png')),
                   (os.path.join('Media', 'Pic', '55.png')),
                   (os.path.join('Media', 'Pic', '66.png'))]
 
+remainDicesPics: list[str] = [(os.path.join('Media', 'Pic', 'one.png')),
+                              (os.path.join('Media', 'Pic', 'two.png')),
+                              (os.path.join('Media', 'Pic', 'three.png')),
+                              (os.path.join('Media', 'Pic', 'four.png')),
+                              (os.path.join('Media', 'Pic', 'five.png')),
+                              (os.path.join('Media', 'Pic', 'six.png'))]
+
 # FPS
 fps = 10

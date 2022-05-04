@@ -16,3 +16,5 @@ def event(event, postFunc) -> None:
         post(Event(pygame.USEREVENT, {'类型': '骰子事件', '描述': '选择', 'no': 3}))
     elif 951 < event.__dict__.get('pos')[0] < 1051 and 200 < event.__dict__.get('pos')[1] < 300:
         post(Event(pygame.USEREVENT, {'类型': '骰子事件', '描述': '选择', 'no': 4}))
+    elif True:
+        post(Event(pygame.USEREVENT, {'类型': '选择事件', '描述': '选择', 'no': 0}))

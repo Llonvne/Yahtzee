@@ -5,6 +5,7 @@ from src.game.media.display.display import Display
 from src.game.media.group.PicGroup import PicGroup
 
 dicesPicGroup = PicGroup(config.dicePics)
+remainPicGroup = PicGroup(config.remainDicesPics)
 
 
 class Dice(Display):
@@ -44,7 +45,8 @@ class Dice(Display):
         return self.isRemain
 
     def toDisplayable(self):
-        # todo 实现换图
+        if self.isRemain:
+            return remainPicGroup[self.__value - 1].toDisplayable()
         return dicesPicGroup[self.__value - 1].toDisplayable()
 
     def getValue(self) -> int:

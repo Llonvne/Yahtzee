@@ -1,4 +1,11 @@
-class Board:
+from src.resetable.resetable import Resetable
+
+
+class Board(Resetable):
+
+    def reset(self):
+        for key in self.board.keys():
+            self.board[key] = 0
 
     def __init__(self):
         self.board = {"one": 0, "two": 0, "three": 0, "four": 0, "five": 0, "six": 0,

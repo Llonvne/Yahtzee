@@ -12,14 +12,21 @@ class Player:
         self.chance = 2
 
     def roll(self):
+        self.chance -= 1
         self.diceBoard.roll()
 
     def chooseScore(self, scoreName: str) -> None:
-        for name, func in self.diceBoard.noTofunc.items():
-            if scoreName == name:
-                self.board.addScore(name, func)
-                return
+        pass
 
-    def reset(self):
+    def resetInTerm(self):
+        self.diceBoard.reset()
         self.chance = 2
-        self.diceBoard.roll()
+
+    def isHasChance(self):
+        return self.chance > 0
+
+    def setRemaining(self, no: int, isRemain: bool):
+        self.diceBoard.setRemaining(no, isRemain)
+
+    def isRemain(self, no: int):
+        return self.diceBoard.isRemaining(no)

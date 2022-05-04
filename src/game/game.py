@@ -18,7 +18,9 @@ class Game:
     """
     pygame API 托管类
     这个函数将会包装所有 pygame 接口
-    所有对于 pygame 的操作都应该由该类托管
+    所有对于 pygame 的操作都应该由该类托管，及其内部包装类托管
+
+    event 处理需要实时性，在处理时直接使用 pygame.Event 而不进行包装
     """
 
     def __init__(self):
@@ -57,42 +59,73 @@ class Game:
     def display(self, *displays: tuple[Display, tuple[int, int]]) -> None:
         """
         显示图像
-        :param displays:由 display 和 坐标组成的元组
-        :return:
+        :param displays:由 display 和 坐标组成的元组组成的元组
+        :return: None
         """
         for display, pos in displays:
             self.screen.blit(display.toDisplayable(), pos)
 
-    def displayDices(self, display: list[tuple[Display, tuple[int, int]]]):
+    def displayDices(self, display: list[tuple[Display, tuple[int, int]]]) -> None:
+        """
+        显示骰子
+        :param display: 有 Display 对象和坐标组成的列表
+        :return: None
+        """
         for d in display:
             self.display((d[0], d[1]))
 
     @staticmethod
-    def getEventFromQueue():
+    def getEventFromQueue() -> list[pygame.event.Event]:
         return pygame.event.get()
 
-    def postEvent(self, type1, sub_type, **kwargs):
+    def postEvent(self, type1, sub_type) -> None:
+        """
+        事件发生函数
+        :param type1:
+        :param sub_type:
+        :return:
+        """
         pygame.event.post(
-            pygame.event.Event(pygame.USEREVENT, {self.type: type1, self.sub_type: sub_type, **kwargs})
+            pygame.event.Event(pygame.USEREVENT, {self.type: type1, self.sub_type: sub_type})
         )
 
     def displayerScore(self, *players: Player):
+        """
+        分数显示函数
+        :param players:
+        :return:
+        """
+        inTermPlayerNo = 0
+        if players[1].isYourTerm:
+            inTermPlayerNo = 1
         # 显示已经有的分数
-        for player in players:
-            if player.isYourTerm:
-                disChoice(player.board, player.diceBoard,player.no,self.screen)
-                for score in player.board.board.items():
-                    if score[1] > 0:
-                        displaytext(self.screen, (noToRead[score[0]], player.no), score[1], True)
+        disChoice(players[inTermPlayerNo].board, players[inTermPlayerNo].diceBoard, inTermPlayerNo, self.screen)
+        for score in players[inTermPlayerNo].board.board.items():
+            if score[1] > 0:
+                displaytext(self.screen, (noToRead[score[0]], inTermPlayerNo), score[1], True)
         for i in range(2):
+            # 显示小记
             displaytext(self.screen, (noToRead.get("smallCount"), i), players[i].board.numCount(),
                         True)
+            # 显示总分
             displaytext(self.screen, (noToRead.get("totalScore"), i),
                         players[i].board.totalScore() + (35 if players[i].board.numCount() >= 63 else 0),
                         True)
+            # 显示奖励
             displaytext(self.screen, (noToRead.get("reward"), i), (35 if players[i].board.numCount() >= 63 else 0),
                         True)
 
-    @staticmethod
-    def screenUpdate():
+    def screenUpdate(self, players: list[Player]):
+        """
+        屏幕更新函数
+        :param players: 玩家列表 用于显示玩家内部的骰子等
+        :return:
+        """
+        self.display((self.backGround, (0, 0)))
+        self.display((self.roll, (725, 600)))
+        self.displayerScore(*players)
+        if players[0].isYourTerm:
+            self.displayDices(players[0].diceBoard.toDisplayable())
+        else:
+            self.displayDices(players[1].diceBoard.toDisplayable())
         pygame.display.update()

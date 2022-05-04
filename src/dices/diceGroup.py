@@ -1,7 +1,12 @@
 from src.dices.dice import Dice
+from src.resetable.resetable import Resetable
 
 
-class DiceGroup:
+class DiceGroup(Resetable):
+    def reset(self):
+        for dice in self.dices:
+            dice.roll()
+
     def toDisplayable(self):
         display = []
         height = 60
@@ -116,4 +121,3 @@ class DiceGroup:
         """
         for d in self.dices:
             d.roll()
-

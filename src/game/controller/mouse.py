@@ -4,7 +4,7 @@ from pygame.event import Event, post
 
 def event(event, postFunc) -> None:
     print(event.__dict__.get('pos')[0], event.__dict__.get('pos')[1])
-    if 768 < event.__dict__.get('pos')[0] < 858 and 621 < event.__dict__.get('pos')[1] < 664:
+    if 720 < event.__dict__.get('pos')[0] < 797 and 597 < event.__dict__.get('pos')[1] < 678:
         postFunc("骰子事件", "投")
     elif 551 < event.__dict__.get('pos')[0] < 651 and 64 < event.__dict__.get('pos')[1] < 157:
         post(Event(pygame.USEREVENT, {'类型': '骰子事件', '描述': '选择', 'no': 0}))

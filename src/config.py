@@ -10,18 +10,24 @@ logo = os.path.join('Media', 'Pic', 'LOGO.jpeg')
 # 设置默认 BGM
 default_BGM = os.path.join('Media', 'Music', 'BGM.mp3')
 
+# Roll Effect_path
+roll_effect_path = "Media/Music/touziD.mp3"
+
 # 设置 video
 default_video_group = [os.path.join('Media', 'Video', 'Start0720.mp4'),
                        os.path.join('Media', 'Video', 'Start720.mp4')]
 
 # 设置背景和 Logo 图片
 background_path = os.path.join('Media', 'Pic', 'board2.png')
-roll_path = os.path.join('Media', 'Pic', 'ROLL0.png')
+roll_path = "Media/Pic/RollPic2.png"
 
 # 骰子图片
-dicePics: list = [(os.path.join('Media', 'Pic', '1.png')),
-                  (os.path.join('Media', 'Pic', '2.png')),
-                  (os.path.join('Media', 'Pic', '3.png')),
-                  (os.path.join('Media', 'Pic', '4.png')),
-                  (os.path.join('Media', 'Pic', '5.png')),
-                  (os.path.join('Media', 'Pic', '6.png'))]
+dicePics: list = [(os.path.join('Media', 'Pic', '11.png')),
+                  (os.path.join('Media', 'Pic', '22.png')),
+                  (os.path.join('Media', 'Pic', '33.png')),
+                  (os.path.join('Media', 'Pic', '44.png')),
+                  (os.path.join('Media', 'Pic', '55.png')),
+                  (os.path.join('Media', 'Pic', '66.png'))]
+
+# FPS
+fps = 10

@@ -13,7 +13,7 @@ class DiceGroup(Resetable):
         :return:
         """
         display = []
-        height = 60
+        height = 200
         Left = 550
         diff = 100
         for d in self.__dices:

@@ -4,7 +4,7 @@ from src import config
 from src.game.media.display.disChoice import displayChoice
 from src.game.media.display.display import Display
 from src.game.media.display.text import displaytext
-from src.game.media.types.music import Music
+from src.game.media.types.effect import Effect
 from src.game.media.types.pic import Pic
 from src.player.Player import Player
 
@@ -43,18 +43,24 @@ class Game:
         # self.__videos = [Video(video_path).play() for video_path in config.default_video_group]
 
         # 播放 BGM
-        self.BGM = Music(config.default_BGM)
-        self.BGM.play()
+        # self.BGM = Music(config.default_BGM)
+        # self.BGM.play()
 
         # 显示 BG
         self.backGround = Pic(config.background_path)
         self.roll = Pic(config.roll_path)
         self.display((self.backGround, (0, 0)))
-        self.display((self.roll, (725, 600)))
+        self.display((self.roll, (900, 600)))
+
+        # 初始化 投掷音效
+        self.rollEffect = Effect(config.roll_effect_path)
 
         # 事件符号
         self.type = "类型"
         self.sub_type = "描述"
+
+        # 动画帧率设置
+        self._clock = pygame.time.Clock()
 
     def display(self, *displays: tuple[Display, tuple[int, int]]) -> None:
         """
@@ -144,4 +150,8 @@ class Game:
             self.displayDices(players[1].diceBoard.toDisplayable())
 
         # 更新屏幕
+        self._clock.tick(config.fps)
         pygame.display.update()
+
+    def wait(self, ms: int):
+        pygame.time.wait(ms)

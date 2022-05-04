@@ -37,6 +37,8 @@ class SpeedBoatDice:
                     # 如果有机会就投
                     if self.players[inTermPlayerNo].isHasChance():
                         self.players[inTermPlayerNo].roll()
+                        self.game.rollEffect.play()
+                        self.game.wait(100)
                 # 处理 选择事件
                 if event.__dict__.get("类型") == "骰子事件" and event.__dict__.get('描述') == "选择":
                     # 获得编号

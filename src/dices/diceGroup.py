@@ -1,15 +1,20 @@
 from src.dices.dice import Dice
+from src.game.media.display.display import Display
 from src.resetable.resetable import Resetable
 
 
 class DiceGroup(Resetable):
-    def reset(self):
+    def reset(self) -> None:
+        """
+        Resetable reset 接口，提供 DiceGroup 重置接口
+        :return: None
+        """
         self.roll()
 
-    def toDisplayable(self):
+    def toDisplayable(self) -> list[tuple[Display,tuple[int,int]]]:
         """
         转换为可显示对象
-        :return:
+        :return: list[tuple[Display,tuple[int,int]]]
         """
         display = []
         height = 200
@@ -21,6 +26,9 @@ class DiceGroup(Resetable):
         return display
 
     def __init__(self):
+        """
+        初始化 5 个骰子
+        """
         self.__dices = [Dice() for i in range(5)]
 
     def setRemaining(self, no: int, isRemain: bool) -> None:

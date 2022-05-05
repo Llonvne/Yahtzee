@@ -10,6 +10,9 @@ from src.game.media.types.pic import Pic
 from src.game.media.types.video import Video
 from src.player.Player import Player
 
+"""
+分数 str -> int 转换字典
+"""
 noToRead = {"one": 0, "two": 1, "three": 2, "four": 3, "five": 4, "six": 5,
             "smallCount": 6, "reward": 7, "totalChoose": 8, "foursame": 9,
             "calabash": 10, "smallStraights": 11, "largeStraights": 12,
@@ -26,6 +29,9 @@ class Game:
     """
 
     def __init__(self):
+        """
+        初始化游戏函数
+        """
         # 初始化 pygame
         pygame.init()
         pygame.mixer.init()
@@ -66,16 +72,24 @@ class Game:
 
     def display(self, *displays: tuple[Display, tuple[int, int]]) -> None:
         """
-        显示图像
+        Display 类对应 显示接口
+        调用 Display 类内部 toDisplayable 接口获得 pygame.Surface 对象，使用
+        Surface.blit 接口进行显示
         :param displays:由 display 和 坐标组成的元组组成的元组
         :return: None
         """
         for display, pos in displays:
+            """
+            如果返回一个空元组，表示不显示
+            """
+            if isinstance(display.toDisplayable(), tuple):
+                continue
             self.screen.blit(display.toDisplayable(), pos)
 
     def displayDices(self, display: list[tuple[Display, tuple[int, int]]]) -> None:
         """
-        显示骰子
+        骰子列表对应显示接口
+        内部具体有 display 接口实现
         :param display: 有 Display 对象和坐标组成的列表
         :return: None
         """
@@ -85,6 +99,7 @@ class Game:
     @staticmethod
     def getEventFromQueue() -> list[pygame.event.Event]:
         """
+        pygame.event.get() 对应包装接口
         获得事件队列
         :return: list[pygame.event.Event]
         """
@@ -155,5 +170,11 @@ class Game:
         self._clock.tick(config.fps)
         pygame.display.update()
 
-    def wait(self, ms: int):
+    @staticmethod
+    def wait(ms: int):
+        """
+        pygame.time.wait 函数包装接口
+        :param ms:
+        :return:
+        """
         pygame.time.wait(ms)

@@ -6,6 +6,19 @@
 import pygame.font
 
 
+def displayText(display, value, isBlack, point):
+    """
+
+    :param display: Display 函数
+    :param value: 显示内容
+    :param isBlack: 是否为黑
+    :param point: 位置
+    :return:
+    """
+    font = pygame.Font(1, 2, 1, )
+    display(font, point)
+
+
 def displaytext(screen: pygame.surface, point, vlaue, colorbool):
     # 用来判断颜色
     if colorbool:

@@ -11,5 +11,10 @@ class Display(metaclass=abc.ABCMeta):
     """
 
     @abc.abstractmethod
-    def toDisplayable(self) -> pygame.Surface:
+    def toDisplayable(self) -> pygame.Surface | tuple:
+        """
+        转化为 pygame.Surface 对象用于显示
+        同时可以返回 元组（为空，不为空也不与处理) 来不显示任何事物
+        :return: pygame.Surface | Tuple
+        """
         pass

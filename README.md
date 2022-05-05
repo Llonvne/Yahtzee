@@ -15,9 +15,11 @@ Hello!🥳,这是我们的Python课程设计的作业，素材来自世界51游�
 * 游戏各种动画，音效添加
 * 代码封装行
 
-库依赖（Beta 1.0)：
+库依赖：
 
 * pygame
 * ffmpeg (conda install ffmpeg -c conda-forge)
 * moviepy
+
+如何运行：请将工作目录调整至 SpeedboatDice 然后运行 python src/Main.py
 

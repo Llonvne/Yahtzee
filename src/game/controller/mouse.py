@@ -2,7 +2,13 @@ import pygame
 from pygame.event import Event, post
 
 
-def event(event, postFunc) -> None:
+def event(event: pygame.event.Event, postFunc) -> None:
+    """
+    鼠标 buttonDown 处理函数，将特定区域鼠标点击事件，转换为游戏事件
+    :param event: pygame.event.Event
+    :param postFunc: 引发事件函数
+    :return: None
+    """
     print(event.__dict__.get('pos')[0], event.__dict__.get('pos')[1])
     if 720 < event.__dict__.get('pos')[0] < 797 and 597 < event.__dict__.get('pos')[1] < 678:
         postFunc("骰子事件", "投")

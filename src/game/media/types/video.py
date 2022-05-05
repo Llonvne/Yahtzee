@@ -1,24 +1,14 @@
 from moviepy.editor import *
 
-from src.game.media.display.display import Display
 from src.game.media.media import Media
 from src.game.media.playable import Playable
 
 
-class Video(Media, Playable, Display):
+class Video(Media, Playable):
     """
     Pygame，MoviePy Video 包装类\n
     继承 Media 和 Playable 类
     """
-
-    def toDisplayable(self):
-        """
-        Display 抽象类 display 接口
-        在 Video 中与 play() 作用一致
-        :return:
-        """
-        self.play()
-        pass
 
     def __init__(self, path: str):
         # 调用 Media 类保存路径

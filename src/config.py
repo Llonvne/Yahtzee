@@ -8,18 +8,20 @@ caption = "快艇骰子"
 logo = os.path.join('Media', 'Pic', 'LOGO.jpeg')
 
 # 设置默认 BGM
+BGM_On = True
 default_BGM = os.path.join('Media', 'Music', 'BGM.mp3')
 
 # Roll Effect_path
-roll_effect_path = "Media/Music/touziD.mp3"
+roll_effect_path = os.path.join('Media','Music','touziD.mp3')
 
 # 设置 video
+video_on = True
 default_video_group = [os.path.join('Media', 'Video', 'Start0720.mp4'),
                        os.path.join('Media', 'Video', 'Start720.mp4')]
 
 # 设置背景和 Logo 图片
 background_path = os.path.join('Media', 'Pic', 'board2.png')
-roll_path = "Media/Pic/RollPic2.png"
+roll_path = os.path.join('Media', 'Pic', 'RollPic2.png')
 
 # 骰子图片
 dicePics: list = [(os.path.join('Media', 'Pic', '11.png')),

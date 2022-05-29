@@ -9,9 +9,9 @@ def event(event: pygame.event.Event, postFunc) -> None:
     :param postFunc: 引发事件函数
     :return: None
     :no 11 12用于记录用户一的小节和奖励分事件
-    :no 25 26用于记录用户一的小节和奖励分事件
+    :no 25 26用于记录用户二的小节和奖励分事件
     :no 5-18 用于记录用户一的所有选择事件
-    :no 19-32 用于记录用户一的所有选择事件
+    :no 19-32 用于记录用户二的所有选择事件
     """
     print(event.__dict__.get('pos')[0], event.__dict__.get('pos')[1])
     if 720 < event.__dict__.get('pos')[0] < 797 and 597 < event.__dict__.get('pos')[1] < 678:

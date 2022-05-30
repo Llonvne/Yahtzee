@@ -4,7 +4,7 @@ from src import config
 from src.game.media.display.disChoice import displayChoice
 from src.game.media.display.display import Display
 from src.game.media.display.displayPlayer import displayer
-from src.game.media.display.text import displaytext
+from src.game.media.display.text import displaytext, disTermCount
 from src.game.media.types.effect import Effect
 from src.game.media.types.music import Music
 from src.game.media.types.pic import Pic
@@ -162,6 +162,8 @@ class Game:
 
         displayer(self)
 
+
+
         # 显示 Roll
         self.display((self.roll, (725, 600)))
 
@@ -174,6 +176,7 @@ class Game:
         else:
             self.displayDices(players[1].diceBoard.toDisplayable())
 
+        disTermCount(self, 10)
         # 更新屏幕
         self._clock.tick(config.fps)
         pygame.display.update()

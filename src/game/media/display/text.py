@@ -6,6 +6,8 @@
 import pygame.font
 
 
+
+
 def displayText(display, value, isBlack, point):
     """
 
@@ -104,3 +106,16 @@ def displaytotal(screen: pygame.surface, point, vlaue, color):
     Font = pygame.font.Font(pygame.font.get_default_font(), 22)
     Font_surface = Font.render(str(vlaue), True, color, None)
     screen.blit(Font_surface, (star_x + lenth_x * point[1], star_y))
+
+def disTermCount(game,term:int):
+
+    if term>=10:
+        star_x = 35
+        star_y = 57
+    else:
+        star_x = 52
+        star_y = 57
+    color=(120,118,106)
+    Font = pygame.font.Font(pygame.font.get_default_font(), 32)
+    Font_surface = Font.render(str(term), True, color, None)
+    game.screen.blit(Font_surface, (star_x, star_y))

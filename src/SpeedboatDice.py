@@ -77,7 +77,7 @@ class SpeedBoatDice:
                 if event.__dict__.get('类型') == '分数选择':
                     chooseScore(self.players[inTermPlayerNo], event)
                 if event.__dict__.get('类型') == '游戏流程控制事件' and event.__dict__.get('描述') == '玩家选择分数完毕':
-                    if inTermPlayerNo == 1 and self.termCount == 2:
+                    if inTermPlayerNo == 1 and self.termCount == 12:
                         self.game.postEvent("游戏流程控制时间", "游戏结束")
                     self.players[inTermPlayerNo].isYourTerm = False
                     self.players[1 - inTermPlayerNo].isYourTerm = True

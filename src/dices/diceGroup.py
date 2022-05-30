@@ -76,9 +76,10 @@ class DiceGroup(Resetable):
                 m[i.getValue()] += 1
             else:
                 m[i.getValue()] = 1
-        v = sorted(m.items(),key=lambda x:x[1])
-        if v[1] == 4:
-            return v[0] * 4
+        v = sorted(m.items(),key=lambda x:x[1],reverse=True)
+        print(v)
+        if v[0][1] == 4:
+            return v[0][0] * 4
         return 0
 
     def calabash(self) -> int:

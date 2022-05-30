@@ -48,11 +48,13 @@ class Game:
         )
 
         # 播放视频
-        self.__videos = [Video(video_path).play() for video_path in config.default_video_group]
+        if config.video_on:
+            self.__videos = [Video(video_path).play() for video_path in config.default_video_group]
 
         # 播放 BGM
-        self.BGM = Music(config.default_BGM)
-        self.BGM.play()
+        if config.BGM_On:
+            self.BGM = Music(config.default_BGM)
+            self.BGM.play()
 
         # 显示 BG
         self.backGround = Pic(config.background_path)

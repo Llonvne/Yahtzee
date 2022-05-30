@@ -38,7 +38,7 @@ class SpeedBoatDice:
                     running = False
                     break
 
-                if event.__dict__.get("类型") == "游戏流程控制时间" and event.__dict__.get('描述') == '游戏结束':
+                if event.__dict__.get("类型") == "游戏流程控制时间" and event.__dict__.get('描述') == '游戏结束' or goodGame:
                     if self.players[1].board.totalScore() > self.players[0].board.totalScore():
                         winnerID = 1
                     if winnerID == 0:
@@ -46,6 +46,7 @@ class SpeedBoatDice:
                     else:
                         self.game.display((Pic(config.win_pic_path), (270, 50)))
                     pygame.display.update()
+                    # displayWinner(self.game,winnerID)
                     goodGame = True
 
                 if goodGame:
@@ -63,7 +64,7 @@ class SpeedBoatDice:
                         for i in range(10):
                             self.players[inTermPlayerNo].rollNotCostChances()
                             self.game.wait(110)
-                            self.game.screenUpdate(self.players)
+                            self.game.screenUpdate(self.players,self.termCount)
 
                 # 处理 选择事件
                 if event.__dict__.get("类型") == "骰子事件" and event.__dict__.get('描述') == "选择":
@@ -76,7 +77,7 @@ class SpeedBoatDice:
                 if event.__dict__.get('类型') == '分数选择':
                     chooseScore(self.players[inTermPlayerNo], event)
                 if event.__dict__.get('类型') == '游戏流程控制事件' and event.__dict__.get('描述') == '玩家选择分数完毕':
-                    if inTermPlayerNo == 1 and self.termCount == 12:
+                    if inTermPlayerNo == 1 and self.termCount == 2:
                         self.game.postEvent("游戏流程控制时间", "游戏结束")
                     self.players[inTermPlayerNo].isYourTerm = False
                     self.players[1 - inTermPlayerNo].isYourTerm = True
@@ -85,9 +86,10 @@ class SpeedBoatDice:
                     if inTermPlayerNo == 0:
                         self.termCount += 1
             # 调用 Game 处理屏幕更新
-            if goodGame:
-                if winnerID == 0:
-                    self.game.display((Pic(config.win_pic_path), (190, 50)))
-                else:
-                    self.game.display((Pic(config.win_pic_path), (270, 50)))
-            self.game.screenUpdate(self.players)
+            # if goodGame:
+            #     if winnerID == 0:
+            #         self.game.display((Pic(config.win_pic_path), (190, 50)))
+            #     else:
+            #         self.game.display((Pic(config.win_pic_path), (270, 50)))
+            if not goodGame:
+                self.game.screenUpdate(self.players,self.termCount)

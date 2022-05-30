@@ -150,7 +150,7 @@ class Game:
             displaytext(self.screen, (noToRead.get("reward"), i), (35 if players[i].board.numCount() >= 63 else 0),
                         True)
 
-    def screenUpdate(self, players: list[Player]):
+    def screenUpdate(self, players: list[Player],term:int):
         """
         屏幕更新函数
         :param players: 玩家列表 用于显示玩家内部的骰子等
@@ -160,9 +160,8 @@ class Game:
         # 显示背景
         self.display((self.backGround, (0, 0)))
 
+        # 显示玩家头像
         displayer(self)
-
-
 
         # 显示 Roll
         self.display((self.roll, (725, 600)))
@@ -176,7 +175,9 @@ class Game:
         else:
             self.displayDices(players[1].diceBoard.toDisplayable())
 
-        disTermCount(self, 10)
+        # 显示回合数
+        disTermCount(self, term)
+
         # 更新屏幕
         self._clock.tick(config.fps)
         pygame.display.update()

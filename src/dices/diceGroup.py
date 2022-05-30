@@ -9,9 +9,11 @@ class DiceGroup(Resetable):
         Resetable reset 接口，提供 DiceGroup 重置接口
         :return: None
         """
+        for i in self.__dices:
+            i.isRemain = False
         self.roll()
 
-    def toDisplayable(self) -> list[tuple[Display,tuple[int,int]]]:
+    def toDisplayable(self) -> list[tuple[Display, tuple[int, int]]]:
         """
         转换为可显示对象
         :return: list[tuple[Display,tuple[int,int]]]

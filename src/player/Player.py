@@ -1,3 +1,5 @@
+import pygame.event
+
 from src.board.Board import Board
 from src.dices.diceGroup import DiceGroup
 
@@ -23,7 +25,10 @@ class Player:
 
     def resetInTerm(self):
         self.diceBoard.reset()
-        self.chance = 2
+        self.chance = 3
+        pygame.event.post(
+            pygame.event.Event(pygame.USEREVENT,{"类型":"骰子事件","描述":"投"})
+        )
 
     def isHasChance(self):
         return self.chance > 0

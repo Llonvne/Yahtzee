@@ -2,6 +2,7 @@
 import pygame
 
 from src.game.controller import mouse
+from src.game.controller.chooseScore import chooseScore
 from src.game.game import Game
 from src.player.Player import Player
 
@@ -49,5 +50,14 @@ class SpeedBoatDice:
                     no: int = event.__dict__.get('no')
                     # 设置保留
                     self.players[inTermPlayerNo].setRemaining(no, not self.players[inTermPlayerNo].isRemain(no))
+
+                # 处理 分数选择 时间
+                if event.__dict__.get('类型') == '分数选择':
+                    chooseScore(self.players[inTermPlayerNo], event)
+                if event.__dict__.get('类型') == '游戏流程控制事件' and event.__dict__.get('描述') == '玩家选择分数完毕':
+                    self.players[inTermPlayerNo].isYourTerm = False
+                    self.players[1 - inTermPlayerNo].isYourTerm = True
+                    inTermPlayerNo = 1 - inTermPlayerNo
+                    self.players[inTermPlayerNo].resetInTerm()
             # 调用 Game 处理屏幕更新
             self.game.screenUpdate(self.players)

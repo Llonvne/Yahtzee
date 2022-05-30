@@ -129,9 +129,12 @@ class Game:
         # 显示已经有的分数
         displayChoice(players[inTermPlayerNo], self.screen)
         # 显示可选择分数
-        for score in players[inTermPlayerNo].board.getScores():
-            if score[1] > 0:
-                displaytext(self.screen, (noToRead[score[0]], inTermPlayerNo), score[1], True)
+        for v in players[inTermPlayerNo].board.isChoose.items():
+            if players[inTermPlayerNo].board.isChoose[v[0]]:
+                displaytext(self.screen, (noToRead[v[0]], inTermPlayerNo),players[inTermPlayerNo].board.getScore(v[0]), True)
+        for v in players[1 - inTermPlayerNo].board.isChoose.items():
+            if players[1 - inTermPlayerNo].board.isChoose[v[0]]:
+                displaytext(self.screen, (noToRead[v[0]],1 - inTermPlayerNo),players[1 - inTermPlayerNo].board.getScore(v[0]), True)
         for i in range(2):
             # 显示小记
             displaytext(self.screen, (noToRead.get("smallCount"), i), players[i].board.numCount(),

@@ -72,20 +72,20 @@ def get_files(filepath: str) -> dict:
     return pathToName
 
 
-if __name__ == "__main__":
-    fcclock = pygame.time.Clock()
-    path = list()
-    for key in sorted(get_files("Media/GIFTEST").items(), key=lambda x: int(x[1][6:8])):
-        path.append(key[0])
-    g = GIF(path)
-    screen = pygame.display.set_mode((720, 720))
-    while True:
-        screen.blit(g.toDisplayable(), (0, 0))
-        pygame.display.update()
-        screen.fill((0, 0, 0))
-        fcclock.tick(10)
-
-
+# if __name__ == "__main__":
+#     fcclock = pygame.time.Clock()
+#     path = list()
+#     for key in sorted(get_files("Media/GIFTEST").items(), key=lambda x: int(x[1][6:8])):
+#         path.append(key[0])
+#     g = GIF(path)
+#     screen = pygame.display.set_mode((720, 720))
+#     while True:
+#         screen.blit(g.toDisplayable(), (0, 0))
+#         pygame.display.update()
+#         screen.fill((0, 0, 0))
+#         fcclock.tick(10)
+#
+#
 def GIF_initWithPicGroup(picGroup: PicGroup) -> GIF:
     paths = list[str]()
     for pic in picGroup:

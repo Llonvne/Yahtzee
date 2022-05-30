@@ -24,6 +24,9 @@ class Board(Resetable):
         self.__board = {"one": 0, "two": 0, "three": 0, "four": 0, "five": 0, "six": 0,
                         "reward": 0, "totalChoose": 0, "foursame": 0, "calabash": 0, "smallStraights": 0,
                         "largeStraights": 0, "speedboat": 0}
+        self.isChoose = {"one": False, "two": False, "three": False, "four": False, "five": False, "six": False,
+                         "reward": False, "totalChoose": False, "foursame": False, "calabash": False,
+                         "smallStraights": False, "largeStraights": False, "speedboat": False}
 
     def totalScore(self) -> int:
         """

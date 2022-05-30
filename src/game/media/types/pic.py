@@ -15,6 +15,8 @@ class Pic(Media, Display):
 
     def _pygameLoad(self) -> None:
         self._pic = pygame.image.load(self._path)
+        int(1)
+        int('2')
         pass
 
     def toDisplayable(self):

@@ -76,9 +76,9 @@ class DiceGroup(Resetable):
                 m[i.getValue()] += 1
             else:
                 m[i.getValue()] = 1
-        for i in m.items():
-            if i[0] == 4:
-                return i[0] * 4
+        v = sorted(m.items(),key=lambda x:x[1])
+        if v[1] == 4:
+            return v[0] * 4
         return 0
 
     def calabash(self) -> int:
@@ -114,7 +114,11 @@ class DiceGroup(Resetable):
         判断是否有小顺，有则返回 15，否则返回0
         :return: int
         """
-        if len(set([i.getValue() for i in self.__dices])) >= 4:
+        s = set([i.getValue() for i in self.__dices])
+        if len(s) < 4:
+            return 0
+        if (1 in s and 2 in s and 3 in s and 4 in s) or (5 in s and 2 in s and 3 in s and 4 in s)\
+                or (5 in s and 6 in s and 3 in s and 4 in s):
             return 15
         return 0
 

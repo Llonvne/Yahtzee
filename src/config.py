@@ -12,7 +12,10 @@ BGM_On = True
 default_BGM = os.path.join('Media', 'Music', 'BGM.mp3')
 
 # Roll Effect_path
-roll_effect_path = os.path.join('Media','Music','touziD.mp3')
+roll_effect_path = os.path.join('Media', 'Music', 'touziD.mp3')
+
+# Win PicG
+win_pic_path = os.path.join('Media', 'Pic', 'win.png')
 
 # 设置 video
 video_on = True
@@ -39,4 +42,4 @@ remainDicesPics: list[str] = [(os.path.join('Media', 'Pic', 'one.png')),
                               (os.path.join('Media', 'Pic', 'six.png'))]
 
 # FPS
-fps = 10
+fps = 60

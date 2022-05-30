@@ -3,6 +3,7 @@ import pygame
 from src import config
 from src.game.media.display.disChoice import displayChoice
 from src.game.media.display.display import Display
+from src.game.media.display.displayPlayer import displayer
 from src.game.media.display.text import displaytext
 from src.game.media.types.effect import Effect
 from src.game.media.types.music import Music
@@ -158,6 +159,8 @@ class Game:
 
         # 显示背景
         self.display((self.backGround, (0, 0)))
+
+        displayer(self)
 
         # 显示 Roll
         self.display((self.roll, (725, 600)))

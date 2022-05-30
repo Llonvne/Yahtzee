@@ -1,0 +1,53 @@
+# 该文件是 Yahtzee Python 依赖文件
+# 使用方法：请使用 conda 新建 虚拟环境
+# conda env create -f Yahtzee.yaml
+# 该命令会创建名为 Yahtzee 虚拟环境，如果有重名，请修改如下环境
+
+name: Yahtzee
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pip
+  - bzip2=1.0.8=h620ffc9_4
+  - ca-certificates=2022.5.18.1=h4653dfc_0
+  - ffmpeg=4.3.2=ha8417bf_0
+  - freetype=2.10.4=h17b34a0_1
+  - gettext=0.19.8.1=h049c9fb_1008
+  - gmp=6.2.1=h9f76cd9_0
+  - gnutls=3.6.13=h706517b_1
+  - lame=3.100=h27ca646_1001
+  - libcxx=12.0.0=hf6beb65_1
+  - libffi=3.4.2=hc377ac9_2
+  - libiconv=1.16=h642e427_0
+  - libpng=1.6.37=hf7e6567_2
+  - ncurses=6.3=h1a28f6b_2
+  - nettle=3.6=hc6a1b29_0
+  - openh264=2.1.1=habe5f53_0
+  - openssl=1.1.1o=ha287fd2_0
+  - python=3.10.4=hbdb9e5c_0
+  - readline=8.1.2=h1a28f6b_1
+  - sqlite=3.38.3=h1058600_0
+  - tk=8.6.11=hb8d0fd4_1
+  - tzdata=2022a=hda174b7_0
+  - wheel=0.37.1=pyhd3eb1b0_0
+  - x264=1!161.3030=h3422bc3_1
+  - xz=5.2.5=h1a28f6b_1
+  - zlib=1.2.12=h5a0b063_2
+  - pip:
+    - certifi==2022.5.18.1
+    - charset-normalizer==2.0.12
+    - decorator==4.4.2
+    - idna==3.3
+    - imageio==2.19.3
+    - imageio-ffmpeg==0.4.7
+    - moviepy==1.0.3
+    - numpy==1.22.4
+    - pillow==9.1.1
+    - pip==21.2.4
+    - proglog==0.1.10
+    - pygame==2.1.2
+    - requests==2.27.1
+    - setuptools==61.2.0
+    - tqdm==4.64.0
+    - urllib3==1.26.9

@@ -77,7 +77,7 @@ class DiceGroup(Resetable):
             else:
                 m[i.getValue()] = 1
         v = sorted(m.items(),key=lambda x:x[1],reverse=True)
-        print(v)
+        # print(v)
         if v[0][1] == 4:
             return v[0][0] * 4
         return 0
